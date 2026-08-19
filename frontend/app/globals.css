@@ -1,0 +1,207 @@
+@import "tailwindcss";
+
+/* ==========================================================================
+   ANART PHARMACY — DESIGN TOKENS
+   Signature palette: "Botanical & Copper" — a deep apothecary green paired
+   with a warm turmeric-copper accent. One token system, used everywhere —
+   no page should hardcode its own colors.
+   ========================================================================== */
+
+:root {
+  /* Core surfaces */
+  --background: #F6F3E8;        /* warm porcelain sand */
+  --surface: #EEF1E2;           /* soft sage panel */
+  --surface-2: #E6EBD8;         /* deeper sage panel (cards, hovers) */
+  --footer: #0F2117;            /* deep botanical ink — footer / dark sections */
+
+  /* Text */
+  --foreground: #16241B;        /* deep forest ink */
+  --text-secondary: #52685A;    /* muted sage grey */
+  --text-on-dark: #EDE7D3;      /* warm parchment text on dark surfaces */
+  --text-on-dark-muted: #B9C4B4;
+
+  /* Brand */
+  --primary: #1F3D2C;           /* botanical green — brand primary */
+  --primary-dark: #142A1E;      /* deeper shade, hovers / footer accents */
+  --primary-light: #EAF0E2;     /* pale wash of primary, chips/badges */
+  --accent: #B8763E;            /* turmeric copper — CTAs, price, highlights */
+  --accent-dark: #96602F;       /* accent hover */
+  --accent-light: #EAD6B4;      /* pale copper wash */
+  --gold: #C79A4B;              /* warm gold — stars, seals */
+
+  /* Inputs / borders */
+  --input-bg: #FFFFFF;
+  --border: #DCE1CC;
+
+  /* Status (kept distinct from brand on purpose) */
+  --success: #1F7A4D;
+  --danger: #B3261E;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-footer: var(--footer);
+
+  --color-foreground: var(--foreground);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-on-dark: var(--text-on-dark);
+
+  --color-primary: var(--primary);
+  --color-primary-dark: var(--primary-dark);
+  --color-primary-light: var(--primary-light);
+  --color-accent: var(--accent);
+  --color-accent-dark: var(--accent-dark);
+  --color-accent-light: var(--accent-light);
+  --color-gold: var(--gold);
+
+  --color-input-bg: var(--input-bg);
+  --color-border: var(--border);
+
+  /* Fonts */
+  --font-sans: var(--font-body);
+  --font-heading: var(--font-display);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-body);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  letter-spacing: -0.01em;
+}
+
+/* ==========================================================================
+   SIGNATURE ELEMENTS
+   The single unique element this site is built around: a hand-drawn
+   "leaf-vein" divider and a botanical seal badge, used sparingly.
+   ========================================================================== */
+
+.leaf-divider {
+  display: block;
+  width: 72px;
+  height: 14px;
+  background-repeat: no-repeat;
+  background-position: left center;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 72 14'%3E%3Cpath d='M0 7 C 18 -2, 30 16, 44 6 S 66 -1, 72 7' stroke='%23B8763E' stroke-width='1.4' fill='none' stroke-linecap='round'/%3E%3Ccircle cx='4' cy='7' r='2' fill='%231F3D2C'/%3E%3C/svg%3E");
+}
+
+.botanical-seal {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.botanical-seal::before {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  border: 1px dashed var(--accent);
+  border-radius: 9999px;
+  opacity: 0.5;
+}
+
+.text-gradient-botanical {
+  background: linear-gradient(120deg, var(--primary) 0%, #2F5233 55%, var(--accent) 130%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Card / surface elevation used across product, category & content cards */
+.surface-card {
+  background: var(--input-bg);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  transition: box-shadow 0.25s ease, transform 0.25s ease, border-color 0.25s ease;
+}
+
+.surface-card:hover {
+  box-shadow: 0 18px 40px -18px rgba(15, 33, 23, 0.28);
+  border-color: var(--accent);
+  transform: translateY(-3px);
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: var(--text-on-dark);
+  border-radius: 9999px;
+  font-weight: 600;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.btn-primary:hover {
+  background: var(--primary-dark);
+}
+
+.btn-accent {
+  background: var(--accent);
+  color: #fff;
+  border-radius: 9999px;
+  font-weight: 600;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.btn-accent:hover {
+  background: var(--accent-dark);
+}
+
+/* Scrollbar */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+/* Inputs */
+input,
+select,
+textarea {
+  background: var(--input-bg) !important;
+  color: var(--foreground) !important;
+  border: 1px solid var(--border);
+}
+
+/* Autofill */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px var(--input-bg) inset !important;
+  -webkit-text-fill-color: var(--foreground) !important;
+  caret-color: var(--foreground) !important;
+}
+
+.loader-ring {
+  position: absolute;
+  width: 92px;
+  height: 92px;
+  border-radius: 50%;
+  border: 2.5px solid rgba(31, 61, 44, 0.1);
+  border-top-color: var(--accent);
+  border-right-color: var(--primary);
+  animation: smoothSpin 1s linear infinite;
+}
+
+@keyframes smoothSpin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

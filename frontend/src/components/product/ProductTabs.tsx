@@ -1,0 +1,304 @@
+"use client";
+
+import {
+  Sparkles,
+  ShieldCheck,
+  PackageCheck,
+  Truck,
+} from "lucide-react";
+
+export default function ProductTabs({
+  product,
+  selectedVariant,
+}: any) {
+  const description =
+    selectedVariant?.description ||
+    product.full_description ||
+    product.description;
+
+  return (
+    <div
+      className="
+      bg-[var(--surface)]
+      border
+      border-bg-[var(--footer)]/10
+      rounded-[32px]
+      overflow-hidden
+    "
+    >
+      {/* HEADER */}
+
+      <div
+        className="
+        px-5
+        md:px-10
+        py-6
+        border-b
+        border-bg-[var(--footer)]/10
+      "
+      >
+        <div className="flex items-center gap-3">
+
+          <div
+            className="
+            w-12
+            h-12
+            rounded-2xl
+            bg-footer
+            text-[#D19151]
+            flex
+            items-center
+            justify-center
+          "
+          >
+            <Sparkles size={22} />
+          </div>
+
+          <div>
+            <h2
+              className="
+              text-2xl
+              md:text-3xl
+              font-black
+              text-foreground
+            "
+            >
+              Product Details
+            </h2>
+
+            <p className="text-[#506B5E] text-sm mt-1">
+              Everything you need to know
+            </p>
+          </div>
+
+        </div>
+      </div>
+
+      {/* HIGHLIGHTS */}
+
+      <div className="p-5 md:p-8">
+
+        <div
+          className="
+          grid
+          grid-cols-2
+          lg:grid-cols-4
+          gap-4
+          mb-8
+        "
+        >
+
+          <div
+            className="
+            bg-[#EAF7F0]
+            rounded-2xl
+            p-4
+            border
+            border-[#0D281B]/10
+          "
+          >
+            <ShieldCheck
+              size={24}
+              className="text-foreground"
+            />
+
+            <h4 className="font-bold text-foreground mt-3">
+              Premium Quality
+            </h4>
+
+            <p className="text-xs text-[#506B5E] mt-1">
+              Carefully selected quality products.
+            </p>
+          </div>
+
+          <div
+            className="
+            bg-[#EAF7F0]
+            rounded-2xl
+            p-4
+            border
+            border-[#0D281B]/10
+          "
+          >
+            <Truck
+              size={24}
+              className="text-foreground"
+            />
+
+            <h4 className="font-bold text-foreground mt-3">
+              Fast Delivery
+            </h4>
+
+            <p className="text-xs text-[#506B5E] mt-1">
+              Quick shipping across locations.
+            </p>
+          </div>
+
+          <div
+            className="
+            bg-[#EAF7F0]
+            rounded-2xl
+            p-4
+            border
+            border-[#0D281B]/10
+          "
+          >
+            <PackageCheck
+              size={24}
+              className="text-foreground"
+            />
+
+            <h4 className="font-bold text-foreground mt-3">
+              Easy Replacement
+            </h4>
+
+            <p className="text-xs text-[#506B5E] mt-1">
+              Hassle-free replacement support.
+            </p>
+          </div>
+
+          <div
+            className="
+            bg-[#EAF7F0]
+            rounded-2xl
+            p-4
+            border
+            border-[#0D281B]/10
+          "
+          >
+            <Sparkles
+              size={24}
+              className="text-foreground"
+            />
+
+            <h4 className="font-bold text-foreground mt-3">
+              Trusted Product
+            </h4>
+
+            <p className="text-xs text-[#506B5E] mt-1">
+              Designed for everyday satisfaction.
+            </p>
+          </div>
+
+        </div>
+
+        {/* DESCRIPTION */}
+
+        <div
+          className="
+          bg-[#EAF7F0]
+          rounded-[28px]
+          p-5
+          md:p-8
+          border
+          border-[#0D281B]/10
+        "
+        >
+          <div className="mb-5">
+
+            <span
+              className="
+              inline-flex
+              items-center
+              gap-2
+              px-4
+              py-2
+              rounded-full
+              bg-footer
+              text-[#D19151]
+              text-xs
+              font-bold
+            "
+            >
+              PRODUCT OVERVIEW
+            </span>
+
+          </div>
+
+          <div
+            className="
+            text-[#3C5548]
+            text-[15px]
+            md:text-[17px]
+            leading-8
+            whitespace-pre-line
+          "
+          >
+            {description}
+          </div>
+        </div>
+
+        {/* EXTRA INFO */}
+
+        <div
+          className="
+          mt-6
+          grid
+          md:grid-cols-3
+          gap-4
+        "
+        >
+
+          <div
+            className="
+            bg-[#EAF7F0]
+            rounded-2xl
+            p-5
+            border
+            border-[#0D281B]/10
+          "
+          >
+            <h4 className="font-black text-foreground">
+              Premium Experience
+            </h4>
+
+            <p className="text-sm text-[#506B5E] mt-2">
+              Crafted to deliver a better everyday
+              shopping experience.
+            </p>
+          </div>
+
+          <div
+            className="
+            bg-[#EAF7F0]
+            rounded-2xl
+            p-5
+            border
+            border-[#0D281B]/10
+          "
+          >
+            <h4 className="font-black text-foreground">
+              Secure Packaging
+            </h4>
+
+            <p className="text-sm text-[#506B5E] mt-2">
+              Carefully packed to reach you safely
+              and securely.
+            </p>
+          </div>
+
+          <div
+            className="
+            bg-[#EAF7F0]
+            rounded-2xl
+            p-5
+            border
+            border-[#0D281B]/10
+          "
+          >
+            <h4 className="font-black text-foreground">
+              Customer First
+            </h4>
+
+            <p className="text-sm text-[#506B5E] mt-2">
+              Built around quality, trust and
+              customer satisfaction.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  );
+}

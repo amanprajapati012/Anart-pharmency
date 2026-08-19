@@ -1,0 +1,166 @@
+"use client";
+
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import API from "@/src/lib/api";
+import { getImageUrl } from "@/src/lib/image";
+
+type Carousel = {
+  _id: string;
+  images: {
+    url: string;
+    public_id?: string;
+  }[];
+};
+
+interface Props {
+  categories: string[];
+}
+
+
+
+export default function FeatureBar({ categories }: Props) {
+  const [carousel, setCarousel] = useState<Carousel | null>(null);
+
+  useEffect(() => {
+    const fetchCarousel = async () => {
+      try {
+        const res = await API.get("/carousels");
+
+        const activeCarousel = res.data.carousels?.find(
+          (item: any) => item.isActive
+        );
+
+        setCarousel(activeCarousel || null);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    fetchCarousel();
+  }, []);
+  return (
+    <section
+      id="home-hero"
+      className="w-full overflow-hidden bg-[var(--surface)]"
+    >
+      {/* ================= DESKTOP ================= */}
+      <div className="hidden lg:grid grid-cols-[290px_1fr]">
+        {/* CATEGORY SIDEBAR */}
+        <div className="bg-[var(--input-bg)] border border-[var(--border)]">
+          {categories.map((cat) => (
+            <Link
+              key={cat}
+              href={`/categories/${encodeURIComponent(cat)}`}
+              className="
+                block
+                px-6
+                py-4
+                text-[15px]
+                font-medium
+                border-b
+                border-[var(--border)]
+                hover:bg-[var(--surface)]
+                hover:text-[var(--accent)]
+                transition
+              "
+            >
+              {cat}
+            </Link>
+          ))}
+        </div>
+
+        {/* ================= DESKTOP BANNERS ================= */}
+        <div className="grid grid-cols-3 gap-2 p-2">
+          {/* LEFT */}
+          <Link
+            href="/collections"
+            className="col-span-2 overflow-hidden rounded-2xl surface-card group"
+          >
+            <div className="aspect-square">
+              <img
+                src={getImageUrl(carousel?.images?.[0])}
+                className="w-full h-full object-cover transition duration-500 group-hover:scale-105"
+                alt=""
+              />
+            </div>
+          </Link>
+
+          {/* RIGHT */}
+          <div className="col-span-1 grid grid-rows-2 gap-2">
+  <Link href="/best-sellers" className="overflow-hidden rounded-2xl surface-card group">
+    <div className="aspect-square">
+      <img
+        src={getImageUrl(carousel?.images?.[1])}
+        className="w-full h-full object-cover"
+        alt=""
+      />
+    </div>
+  </Link>
+
+  <Link href="/new-arrivals" className="overflow-hidden rounded-2xl surface-card group">
+    <div className="aspect-square">
+      <img
+        src={getImageUrl(carousel?.images?.[2])}
+        className="w-full h-full object-cover"
+        alt=""
+      />
+    </div>
+  </Link>
+</div>
+        </div>
+      </div>
+
+      {/* ================= MOBILE ================= */}
+      <div className="lg:hidden">
+        {/* MAIN BANNER */}
+        <Link
+          href="/collections"
+          className="block overflow-hidden"
+        >
+          <div className="aspect-square w-full">
+            <img
+              src={getImageUrl(carousel?.images?.[0])}
+              alt=""
+              className="h-full w-full object-contain bg-background"
+            />
+          </div>
+        </Link>
+
+        {/* SCROLLABLE SQUARE BANNERS */}
+
+        <div
+          className="
+    mt-4
+    flex
+    gap-4
+    overflow-x-auto
+    px-4
+    pb-4
+    snap-x
+    snap-mandatory
+    [-ms-overflow-style:none]
+    [scrollbar-width:none]
+    [&::-webkit-scrollbar]:hidden
+  "
+        >
+          {carousel?.images?.slice(1).map((img, index) => (
+            <Link
+              key={index}
+              href="/best-sellers"
+              className="snap-start shrink-0 w-[72vw] max-w-[280px]"
+            >
+              <div className="aspect-square overflow-hidden rounded-2xl shadow-md">
+                <img
+                  src={getImageUrl(img)}
+                  alt=""
+                  className="h-full w-full object-cover"
+                />
+              </div>
+            </Link>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
