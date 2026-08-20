@@ -2,39 +2,42 @@
 
 /* ==========================================================================
    ANART PHARMACY — DESIGN TOKENS
-   Signature palette: "Botanical & Copper" — a deep apothecary green paired
-   with a warm turmeric-copper accent. One token system, used everywhere —
-   no page should hardcode its own colors.
+   Signature palette: "Royal Blue & Traditional Gold"
+   Premium pharmaceutical + traditional Ayurvedic visual identity
    ========================================================================== */
 
 :root {
   /* Core surfaces */
-  --background: #F6F3E8;        /* warm porcelain sand */
-  --surface: #EEF1E2;           /* soft sage panel */
-  --surface-2: #E6EBD8;         /* deeper sage panel (cards, hovers) */
-  --footer: #0F2117;            /* deep botanical ink — footer / dark sections */
+  --background: #F4F7FB;
+  --surface: #EAF1F8;
+  --surface-2: #DCE8F3;
+  --footer: #0B1F36;
 
   /* Text */
-  --foreground: #16241B;        /* deep forest ink */
-  --text-secondary: #52685A;    /* muted sage grey */
-  --text-on-dark: #EDE7D3;      /* warm parchment text on dark surfaces */
-  --text-on-dark-muted: #B9C4B4;
+  --foreground: #132238;
+  --text-secondary: #53677D;
+  --text-on-dark: #F3F7FB;
+  --text-on-dark-muted: #B8C7D8;
 
   /* Brand */
-  --primary: #1F3D2C;           /* botanical green — brand primary */
-  --primary-dark: #142A1E;      /* deeper shade, hovers / footer accents */
-  --primary-light: #EAF0E2;     /* pale wash of primary, chips/badges */
-  --accent: #B8763E;            /* turmeric copper — CTAs, price, highlights */
-  --accent-dark: #96602F;       /* accent hover */
-  --accent-light: #EAD6B4;      /* pale copper wash */
-  --gold: #C79A4B;              /* warm gold — stars, seals */
+  --primary: #123E68;
+  --primary-dark: #092C4C;
+  --primary-light: #E2EEF8;
+
+  /* Accent */
+  --accent: #B8862D;
+  --accent-dark: #8E681F;
+  --accent-light: #F1E3BF;
+
+  /* Secondary accent */
+  --gold: #D2A94B;
 
   /* Inputs / borders */
-  --input-bg: #FFFFFF;
-  --border: #DCE1CC;
+  --input-bg: #FDFEFF;
+  --border: #CFDCE8;
 
-  /* Status (kept distinct from brand on purpose) */
-  --success: #1F7A4D;
+  /* Status */
+  --success: #19704A;
   --danger: #B3261E;
 }
 
@@ -47,13 +50,16 @@
   --color-foreground: var(--foreground);
   --color-text-secondary: var(--text-secondary);
   --color-text-on-dark: var(--text-on-dark);
+  --color-text-on-dark-muted: var(--text-on-dark-muted);
 
   --color-primary: var(--primary);
   --color-primary-dark: var(--primary-dark);
   --color-primary-light: var(--primary-light);
+
   --color-accent: var(--accent);
   --color-accent-dark: var(--accent-dark);
   --color-accent-light: var(--accent-light);
+
   --color-gold: var(--gold);
 
   --color-input-bg: var(--input-bg);
@@ -64,21 +70,29 @@
   --font-heading: var(--font-display);
 }
 
+/* ==========================================================================
+   BASE
+   ========================================================================== */
+
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-body);
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-display);
   letter-spacing: -0.01em;
+  color: var(--foreground);
 }
 
 /* ==========================================================================
    SIGNATURE ELEMENTS
-   The single unique element this site is built around: a hand-drawn
-   "leaf-vein" divider and a botanical seal badge, used sparingly.
    ========================================================================== */
 
 .leaf-divider {
@@ -87,7 +101,8 @@ h1, h2, h3, h4, h5, h6 {
   height: 14px;
   background-repeat: no-repeat;
   background-position: left center;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 72 14'%3E%3Cpath d='M0 7 C 18 -2, 30 16, 44 6 S 66 -1, 72 7' stroke='%23B8763E' stroke-width='1.4' fill='none' stroke-linecap='round'/%3E%3Ccircle cx='4' cy='7' r='2' fill='%231F3D2C'/%3E%3C/svg%3E");
+
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 72 14'%3E%3Cpath d='M0 7 C 18 -2, 30 16, 44 6 S 66 -1, 72 7' stroke='%23B8862D' stroke-width='1.4' fill='none' stroke-linecap='round'/%3E%3Ccircle cx='4' cy='7' r='2' fill='%23123E68'/%3E%3C/svg%3E");
 }
 
 .botanical-seal {
@@ -103,55 +118,109 @@ h1, h2, h3, h4, h5, h6 {
   inset: -6px;
   border: 1px dashed var(--accent);
   border-radius: 9999px;
-  opacity: 0.5;
+  opacity: 0.6;
 }
 
+/* ==========================================================================
+   TEXT EFFECTS
+   ========================================================================== */
+
 .text-gradient-botanical {
-  background: linear-gradient(120deg, var(--primary) 0%, #2F5233 55%, var(--accent) 130%);
+  background: linear-gradient(
+    120deg,
+    var(--primary) 0%,
+    #245A86 55%,
+    var(--accent) 125%
+  );
+
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
 
-/* Card / surface elevation used across product, category & content cards */
+/* Traditional gold text */
+
+.text-gradient-gold {
+  background: linear-gradient(
+    120deg,
+    #8E681F 0%,
+    #D2A94B 50%,
+    #A87924 100%
+  );
+
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ==========================================================================
+   CARDS
+   ========================================================================== */
+
 .surface-card {
   background: var(--input-bg);
   border: 1px solid var(--border);
   border-radius: 18px;
-  transition: box-shadow 0.25s ease, transform 0.25s ease, border-color 0.25s ease;
+
+  transition:
+    box-shadow 0.25s ease,
+    transform 0.25s ease,
+    border-color 0.25s ease;
 }
 
 .surface-card:hover {
-  box-shadow: 0 18px 40px -18px rgba(15, 33, 23, 0.28);
+  box-shadow: 0 18px 40px -18px rgba(18, 62, 104, 0.28);
   border-color: var(--accent);
   transform: translateY(-3px);
 }
+
+/* ==========================================================================
+   PRIMARY BUTTON
+   ========================================================================== */
 
 .btn-primary {
   background: var(--primary);
   color: var(--text-on-dark);
   border-radius: 9999px;
   font-weight: 600;
-  transition: background 0.2s ease, transform 0.2s ease;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .btn-primary:hover {
   background: var(--primary-dark);
+  box-shadow: 0 8px 20px rgba(9, 44, 76, 0.22);
 }
+
+/* ==========================================================================
+   GOLD BUTTON
+   ========================================================================== */
 
 .btn-accent {
   background: var(--accent);
-  color: #fff;
+  color: #132238;
   border-radius: 9999px;
   font-weight: 600;
-  transition: background 0.2s ease, transform 0.2s ease;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .btn-accent:hover {
   background: var(--accent-dark);
+  color: var(--text-on-dark);
+  box-shadow: 0 8px 20px rgba(142, 104, 31, 0.22);
 }
 
-/* Scrollbar */
+/* ==========================================================================
+   SCROLLBAR
+   ========================================================================== */
+
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
@@ -161,7 +230,10 @@ h1, h2, h3, h4, h5, h6 {
   -ms-overflow-style: none;
 }
 
-/* Inputs */
+/* ==========================================================================
+   INPUTS
+   ========================================================================== */
+
 input,
 select,
 textarea {
@@ -170,25 +242,45 @@ textarea {
   border: 1px solid var(--border);
 }
 
-/* Autofill */
+input::placeholder,
+textarea::placeholder {
+  color: var(--text-secondary);
+}
+
+/* ==========================================================================
+   AUTOFILL
+   ========================================================================== */
+
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 textarea:-webkit-autofill,
 select:-webkit-autofill {
-  -webkit-box-shadow: 0 0 0 1000px var(--input-bg) inset !important;
-  -webkit-text-fill-color: var(--foreground) !important;
-  caret-color: var(--foreground) !important;
+  -webkit-box-shadow:
+    0 0 0 1000px var(--input-bg) inset !important;
+
+  -webkit-text-fill-color:
+    var(--foreground) !important;
+
+  caret-color:
+    var(--foreground) !important;
 }
+
+/* ==========================================================================
+   LOADER
+   ========================================================================== */
 
 .loader-ring {
   position: absolute;
   width: 92px;
   height: 92px;
   border-radius: 50%;
-  border: 2.5px solid rgba(31, 61, 44, 0.1);
+
+  border: 2.5px solid rgba(18, 62, 104, 0.1);
+
   border-top-color: var(--accent);
   border-right-color: var(--primary);
+
   animation: smoothSpin 1s linear infinite;
 }
 
@@ -198,8 +290,14 @@ select:-webkit-autofill {
   }
 }
 
+/* ==========================================================================
+   REDUCED MOTION
+   ========================================================================== */
+
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
+  *,
+  *::before,
+  *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
