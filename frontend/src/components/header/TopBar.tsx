@@ -16,7 +16,7 @@ import { useEffect, useRef, useState } from "react";
 
 import { getImageUrl } from "@/src/lib/image";
 import API from "@/src/lib/api";
-import Logo from "@/src/components/common/Logo";
+// import Logo from "@/src/components/common/Logo";
 
 interface Props {
   user: any;
@@ -107,13 +107,18 @@ export default function TopBar({
         style={{ borderColor: "var(--border)" }}
       >
         {/* LOGO / BRAND */}
-        <Link
-          href="/"
-          className="w-auto lg:w-[280px] h-full flex items-center justify-center lg:justify-start lg:border-r lg:pl-6"
-          style={{ borderColor: "var(--border)" }}
-        >
-          <Logo markSize={44} />
-        </Link>
+       {/* LOGO / BRAND */}
+<Link
+  href="/"
+  className="w-auto lg:w-[280px] h-full flex items-center justify-center lg:justify-start lg:border-r lg:pl-6"
+  style={{ borderColor: "var(--border)" }}
+>
+  <img
+    src="/anartlogo.png"
+    alt="Logo"
+    className="w-auto h-[52px] lg:h-[64px] object-contain"
+  />
+</Link>
 
         {/* SEARCH */}
         <div ref={searchRef} className="hidden lg:flex flex-1 px-10 relative">

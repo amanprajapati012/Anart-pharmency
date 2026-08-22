@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Logo from "@/src/components/common/Logo";
+// import Logo from "@/src/components/common/Logo";
 import {
   IconLeaf,
   IconBrandInstagram,
@@ -18,7 +18,11 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-[1.3fr_1fr_1fr_1fr] gap-12 border-b border-white/10 pb-12">
           {/* Brand */}
           <div>
-            <Logo variant="light" markSize={40} />
+            <img
+  src="/anartlogo.png"
+  alt="Logo"
+  className="w-auto h-[45px] object-contain"
+ />
 
             <span className="leaf-divider block mt-5" />
 
