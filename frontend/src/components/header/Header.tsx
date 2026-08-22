@@ -27,15 +27,15 @@ export default function Header() {
   const navLinks = [
     {
       name: "Ayurvedic Products",
-      href: "/categories/ayurvedic-products",
+      href: "/categories/Ayurvedic",
     },
     {
-      name: "Shilajit",
-      href: "/categories/shilajit",
+      name: "Shilajeet",
+      href: "/categories/Shilajeet",
     },
     {
-      name: "Herbal Wellness",
-      href: "/categories/herbal-wellness",
+      name: "Vitamins & Supplement",
+      href: "/categories/Vitamins%20%26%20Supplement",
     },
     {
       name: "Best Sellers",

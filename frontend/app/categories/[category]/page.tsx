@@ -34,53 +34,61 @@ export default function CategoryPage() {
         }
     }, [categoryName]);
 
-    const loadData = async () => {
+   const loadData = async () => {
+    try {
+        setLoading(true);
+
+        const categoryUrl = `/productcategorybyname/${encodeURIComponent(categoryName)}`;
+        const productUrl = `/productbycategoryname/${encodeURIComponent(categoryName)}`;
+        const subcategoryUrl = `/productsubcategorybycategoryname/${encodeURIComponent(categoryName)}`;
+
+        console.log("CATEGORY URL:", categoryUrl);
+        console.log("PRODUCT URL:", productUrl);
+        console.log("SUBCATEGORY URL:", subcategoryUrl);
+
+        let categoryRes;
+        let productRes;
+        let subRes;
+
         try {
-            setLoading(true);
-
-            const [categoryRes, productRes, subRes] =
-                await Promise.all([
-                    API.get(
-                        `/productcategorybyname/${encodeURIComponent(
-                            categoryName
-                        )}`
-                    ),
-
-                    API.get(
-                        `/productbycategoryname/${encodeURIComponent(
-                            categoryName
-                        )}`
-                    ),
-
-                    API.get(
-                        `/productsubcategorybycategoryname/${encodeURIComponent(
-                            categoryName
-                        )}`
-                    ),
-                ]);
-
-
-
-            setCategory(
-                categoryRes.data?.category || null
-            );
-
-            setProducts(
-                productRes.data?.products || []
-            );
-
-            setSubcategories(
-                subRes.data?.subCategory || []
-            );
+            categoryRes = await API.get(categoryUrl);
+            console.log("CATEGORY RESPONSE:", categoryRes.data);
         } catch (error) {
-            console.error(
-                "CATEGORY PAGE ERROR =>",
-                error
-            );
-        } finally {
-            setLoading(false);
+            console.error("❌ CATEGORY API FAILED:", categoryUrl, error);
         }
-    };
+
+        try {
+            productRes = await API.get(productUrl);
+            console.log("PRODUCT RESPONSE:", productRes.data);
+        } catch (error) {
+            console.error("❌ PRODUCT API FAILED:", productUrl, error);
+        }
+
+        try {
+            subRes = await API.get(subcategoryUrl);
+            console.log("SUBCATEGORY RESPONSE:", subRes.data);
+        } catch (error) {
+            console.error("❌ SUBCATEGORY API FAILED:", subcategoryUrl, error);
+        }
+
+        setCategory(
+            categoryRes?.data?.category || null
+        );
+
+        setProducts(
+            productRes?.data?.products || []
+        );
+
+        setSubcategories(
+            subRes?.data?.subCategory || []
+        );
+
+    } catch (error) {
+        console.error("CATEGORY PAGE ERROR =>", error);
+    } finally {
+        setLoading(false);
+    }
+};
 
     const filteredProducts = useMemo(() => {
         let data = [...products];
